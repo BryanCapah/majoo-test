@@ -67,10 +67,17 @@ export const useTodoCreate = ({ todo, activeTodo, navigateToListHandler }) => {
     })
 
     const createHandler = useCallback((e) => {
-        const { name, value, selectedOptions } = e.target
+
+        if (!e?.target) {
+            setCreate(current => ({ ...current, createdAt: e }))
+            return
+        }
+
+        const { name, value, selectedOptions } = e?.target
         let val = ''
         if (name === 'status') val = Number(selectedOptions[0].value)
         else val = value
+        console.log(val);
         setCreate(current => ({ ...current, [name]: val }))
     }, [])
 
@@ -79,7 +86,8 @@ export const useTodoCreate = ({ todo, activeTodo, navigateToListHandler }) => {
         description,
         nameIsRequired,
         descriptionIsRequired,
-        status
+        status,
+        createdAt
     } = create
 
     const validate = () => {
@@ -106,6 +114,7 @@ export const useTodoCreate = ({ todo, activeTodo, navigateToListHandler }) => {
         name,
         description,
         status,
+        createdAt,
         nameIsRequired,
         descriptionIsRequired,
         validate

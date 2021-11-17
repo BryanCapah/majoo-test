@@ -3,6 +3,7 @@ import { Input } from "@chakra-ui/input"
 import { Select } from "@chakra-ui/react"
 import { Textarea } from "@chakra-ui/textarea"
 import { useTodoCreate } from "./hooks"
+import DateTimePicker from 'react-datetime-picker';
 
 const TodoCreate = ({
     todo,
@@ -14,6 +15,7 @@ const TodoCreate = ({
         name,
         description,
         status,
+        createdAt,
         nameIsRequired,
         descriptionIsRequired,
         validate
@@ -22,7 +24,7 @@ const TodoCreate = ({
         activeTodo,
         navigateToListHandler
     })
-
+    console.log();
     return (
         <div className='an-fade w-full'>
             <Input
@@ -42,6 +44,7 @@ const TodoCreate = ({
                 placeholder='Input description'
                 className='mb-3' />
             <Select
+                className='mb-3'
                 name='status'
                 defaultValue={status}
                 onChange={createHandler} >
@@ -49,6 +52,16 @@ const TodoCreate = ({
                 <option value={1}>Done</option>
                 <option className={`${status === 1 && 'hidden'}`} value={2}>Delete Todo</option>
             </Select>
+            <DateTimePicker
+
+                name='createdAt'
+                onChange={createHandler}
+                disableCalendar={true}
+                disableClock={true}
+                className={'bg-blue-500 rounded-md p-2 mb-3 '}
+                value={createdAt}
+            />
+            <br />
             <Button
                 onClick={() => validate()}
                 className='mt-3'>

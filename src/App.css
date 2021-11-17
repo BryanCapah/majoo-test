@@ -17,6 +17,11 @@
       background-color: rgb(200, 200, 200,0.3) !important;
       transition: all 0.2s ease-in !important;    
 }
+
+.react-calendar{
+  background-color: #3B81F6 !important;
+  border-radius: 7px !important;
+}
 /* 
 .chakra-select__icon-wrapper {
   display: none !important;
